@@ -1,11 +1,25 @@
 <script>
     import List from './List.svelte' 
 	export let value = '';
-    let tasks = [];
+    export let tasks = [];
+    let id = 0;
+    let onEdit = false;
     function handleClick() {
-        tasks.push(value);
+        tasks.push({ id: id++, value: value });
         tasks = tasks;
         value = '';
+	}
+
+    
+    export function handleEditClick() {
+        onEdit = true;
+	}
+
+    export function handleDeleteClick(index) {
+        tasks = [
+			...tasks.slice(0, index),
+			...tasks.slice(index + 1, tasks.length)
+		];
 	}
 </script>
 
@@ -14,4 +28,13 @@
 <button on:click={handleClick}>
 	Add
 </button>
-<List {tasks}/>
+{#each tasks as task, index (task.id)}
+    <List {tasks}
+    id = {task.id}
+    value = {task.value}
+    onEdit = {onEdit}
+    edit={handleEditClick}
+    remove={()=>handleDeleteClick(index)}/>
+{/each}
+
+

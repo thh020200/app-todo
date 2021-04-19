@@ -1,12 +1,20 @@
 <script>
-	export let tasks;
+	export let value;
+    export let onEdit;
+    export let edit;
+    export let remove;
+    export let id;
 </script>
 
-{#each tasks as task}
+
 <div class='card'>
-	<h2>{task}</h2>
+    <div>
+        <input readonly={!onEdit} value = {value}/>
+        <button on:click={edit} >Sửa</button>
+        <button on:click={remove}>Xóa</button>
+    </div>
 </div>
-{/each}
+
 
 <style>
 	.card {
@@ -22,15 +30,5 @@
 	.card::after {
 		clear: both;
 		display: block;
-	}
-
-	h2 {
-		margin: 0 0 0.5em 0;
-		font-size: 16px;
-	}
-
-	p {
-		margin: 0;
-		font-size: 14px;
 	}
 </style>
