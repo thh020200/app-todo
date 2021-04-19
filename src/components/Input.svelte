@@ -1,20 +1,22 @@
 <script>
     import List from './List.svelte' 
-	export let value = '';
+	export let valueInput = '';
     export let tasks = [];
-    let id = 0;
-    let onEdit = false;
-    function handleClick() {
-        tasks.push({ id: id++, value: value });
+    let id = 0; //id tăng dần
+
+    //Thêm vào list
+    function handleAddClick(value) {
+        tasks.push({ id: id++, value: value, isEdit:false});
         tasks = tasks;
-        value = '';
+        valueInput = '';
 	}
 
-    
-    export function handleEditClick() {
-        onEdit = true;
+    //Edit list
+    export function handleEditClick(index) {
+        tasks[index].isEdit = (tasks[index].isEdit == false)?true:false;
 	}
 
+    //Xóa list tại vị trí index
     export function handleDeleteClick(index) {
         tasks = [
 			...tasks.slice(0, index),
@@ -23,18 +25,14 @@
 	}
 </script>
 
-<input bind:value={value}>
-
-<button on:click={handleClick}>
-	Add
-</button>
+<input bind:value={valueInput}>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<button on:click={()=>handleAddClick(valueInput)}>Add</button>
 {#each tasks as task, index (task.id)}
     <List {tasks}
     id = {task.id}
-    value = {task.value}
-    onEdit = {onEdit}
-    edit={handleEditClick}
+    isEdit = {task.isEdit}
+    bind:taskValue = {task.value}
+    edit={()=>handleEditClick(index)}
     remove={()=>handleDeleteClick(index)}/>
 {/each}
-
-

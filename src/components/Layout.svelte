@@ -1,31 +1,35 @@
-<div class='card'>
-</div>
+<script>
+	import Input from './Input.svelte' 
+</script>
+
+  <div class="wrapper">
+    <header>Todo App</header>
+	<br>
+    <div>
+      <Input />
+    </div>
+  </div>
 
 <style>
-	.card {
-		position: relative;
-		margin: 0.5em;
-		padding: 10em 0.5em 0.5em 6em;
-		border: 1px solid #eee;
-		border-radius: 4px;
-		box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-		min-height: 5em;
-	}
-
-	.card::after {
-		clear: both;
-		display: block;
-	}
-
-	h2 {
-		margin: 0 0 0.5em 0;
-		font-size: 16px;
-	}
-
-	p {
-		margin: 0;
-		font-size: 14px;
-	}
+.wrapper{
+  background: #fff;
+  max-width: 400px;
+  width: 100%;
+  margin: 120px auto;
+  padding: 25px;
+  border-radius: 5px;
+  box-shadow: 0px 10px 15px rgba(0,0,0,0.1);
+}
+.wrapper header{
+  font-size: 30px;
+  font-weight: 600;
+}
+.wrapper .inputField{
+  margin: 20px 0;
+  width: 100%;
+  display: flex;
+  height: 45px;
+}
 </style>
 
 
