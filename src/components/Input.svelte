@@ -1,8 +1,11 @@
 <script>
-	let value = '';
-
+    import List from './List.svelte' 
+	export let value = '';
+    let tasks = [];
     function handleClick() {
-		alert(value)
+        tasks.push(value);
+        tasks = tasks;
+        value = '';
 	}
 </script>
 
@@ -11,3 +14,4 @@
 <button on:click={handleClick}>
 	Add
 </button>
+<List {tasks}/>
